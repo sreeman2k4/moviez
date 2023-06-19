@@ -88,7 +88,7 @@ const requirelogin=(req,res,next)=>{
 const languages=["none","telugu","tamil","english","hindi"];
 const genres=["none","love","suspence","comedy","horror","action"];
 
-mongoose.connect('mongodb://localhost:27017/moviez',{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect("mongodb+srv://sreeman:saiveer2k4@cluster0.mxxlwz6.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser:true,useUnifiedTopology:true})
 
  .then(()=>{
     console.log("mongo connection open");
