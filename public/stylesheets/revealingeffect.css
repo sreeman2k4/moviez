@@ -33,7 +33,7 @@
 
 /* block-$ */
 .block-effect {
-  font-size: calc(8px + 6vw);
+  font-size: calc(3px + 3vw);
 }
 
 .block-reveal {

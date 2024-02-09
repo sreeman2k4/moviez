@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/stylesheets/moviecard.css">
 <link rel="stylesheet" href="/stylesheets/scrollarea.css">
 <link rel="stylesheet" href="/stylesheets/revealingeffect.css">
+<link rel="stylesheet" href="/stylesheets/check.css">
 <!-- <link rel="stylesheet" href="/stylesheets/movieshow.css"> -->
 <!-- <link rel="stylesheet" href="/stylesheets/avengerscard.css"> -->
 <!-- <link rel="stylesheet" href="/stylesheets/avengerscard.scss"> -->
@@ -56,8 +57,10 @@
 
 <%-include("../styles/flash.ejs")%>
 
-<h1><%=movie.name%></h1>
-<h1> <p><%=movie.year%></p></h1>
+<h1 class="block-effect" style="--td: 1.2s">
+  <div class="block-reveal" style="--bc: #f10c0c; --d: .1s" ><%=movie.name%></div>
+  <div class="block-reveal" style="--bc: #c5ed14; --d: .5s"><%=movie.year%></div>
+</h1>
 <a class="btn btn-outline-secondary btn-sm "href="/movies">back</a>
 <form action="/movies/<%=movie._id%>/watchlist" method="POST">
   <button class="btn btn-outline-warning" type="button">watchlist</button>
@@ -149,7 +152,29 @@
 </div>
 
 
+<div class="circle-wrap">
+  <div class="circle">
+    
+    <div class="mask full">
+      <div class="fill"></div>
+    </div>
+   
+    <div class="mask half">
+      <div class="fill"></div>
+    </div>
+    
+    <div class="inside-circle">
+      <%=movie.rating*10%>
+    </div>
+    
+  </div>
+</div>
 
+<div class="circlePercent">
+  <div class="counter" data-percent="<%=movie.rating*10%>"></div>
+  <div class="progress"></div>
+  <div class="progressEnd"></div>
+</div>
 
 
 <br><br><br><br>
@@ -239,34 +264,76 @@
 
 
 
-<div id="card_container" data-offset="2">
-  <div class="pg">
-    <img src="<%movie.image%>">
-  </div>
-  <div id="card">
-    <div class="shine"></div>
-    <div class="text-block">
-      <h1><%movie.name%> <small>(<%=movie.year%>)</small></h1>
-      <h3><%=movie.genre%></h3>
-      <p>
-       <%=movie.storyline%>
-      </p>
-      <button>Watch Trailer</button>
-    </div>
-  </div>
-</div>
-<h1 class="block-effect" style="--td: 1.2s">
-  <div class="block-reveal" style="--bc: #4040bf; --d: .1s">Block</div>
-  <div class="block-reveal" style="--bc: #bf4060; --d: .5s">Revealing Effect</div>
-</h1>
 
-<div class="info">
-  <p>Change --td (total duration) to increase/decrease the time of the effect in HTML panel.</p>
-</div>
+
 
 <a href="https://abubakersaeed.netlify.app/designs/d12-block-revealing-effect" class="abs-site-link" rel="nofollow noreferrer" target="_blank">abs/designs/d12-block-revealing-effect</a>
 
 
+<!-- delete -->
+
+<div id="ContainerHL">  
+  <div id="MainPoster">   
+    <%movie.images.forEach((image,i)=>{%>
+      <div  <%=i===0?"active":""%>>
+        <%if(i==0){%>
+         <img src="<%=image.url%>"  alt="..." height=280 >
+       <%}%>
+       </div>
+     <%})%>
+      <div id="Ratings">
+        <table>
+          <tr>
+            <td><b><span style="color:rgb(200,170,30);">IMDb:</span></b></td>
+            <td><b><%=movie.rating%></b><span style="color:rgb(70,70,70);"> / 10</span></td>
+          </tr>
+         
+        </table>
+
+ </div>
+ </div>
+
+ <div id="TitleHL"><b><%=movie.name%></b></div> 
+ <div id="UserRatingHL">
+   <div class="stars" id="s1">&#9733</div>
+   <div class="stars" id="s2">&#9733</div>
+   <div class="stars" id="s3">&#9733</div>
+   <div class="stars" id="s4">&#9733</div>
+   <div class="stars" id="s5">&#9733</div>
+ </div>  
+</div>
+<div id="SelMovie">
+ <div id="MovieInfoMain">
+   <div id="Title"><b> </b></div>    
+   <div id="UserRating"></div>   
+   <div id="DetailsTop"></div>
+   <div id="DetailsTopCover"></div>
+   <div id="DetailsBottom"></div>
+   <div id="DetailsBottomCover"></div>
+   <div id="Details">
+    <table>
+      <tr><td class="Key">Genre</td><td class="Value"><%=movie.genre%></td></tr>       
+      <tr><td class="Key">Released</td><td class="Value"><%=movie.year%></td></tr>
+      <tr><td class="Key">story</td><td class="Value"><%=movie.storyline%></td></tr>
+      <tr><td class="Key">hero</td><td class="Value"><%=movie.hero%></td></tr>
+      <tr><td class="Key">heroine</td><td class="Value"><%=movie.heroine%></td></tr>
+      <tr><td class="Key">ott</td><td class="Value"><%=movie.ott%></td></tr>
+      <tr><td class="Key">rating</td><td class="Value"><%=movie.rating%></td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+        <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+      <tr><td class="Key">Director</td><td class="Value">Gérard Pirés</td></tr>
+     </table>
+   </div> 
+ 
+ </div>
+</div>  
 
     <!-- card -->
    
